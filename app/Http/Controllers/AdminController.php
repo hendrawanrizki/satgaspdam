@@ -38,16 +38,7 @@ class AdminController extends Controller
        // return view('lowongan', compact('data'));
         return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);
     }
-    public function detaillowongan(Request $request, $id){
-        $data = DB::table('pilihlowongan')
-        ->join('datauser', 'pilihlowongan.id', '=', 'datauser.id')
-        // ->join('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
-        ->select('datauser.nama_lengkap','datauser.no_ktp','datauser.tempat_lahir','datauser.tanggal_lahir','datauser.jenis_kelamin', 'datauser.status_pernikahan','datauser.alamat','datauser.telpon','datauser.pendidikan_terakhir','pilihlowongan.status')
-        ->where('pilihlowongan.id','=', $id)
-        ->get();
-        //return view('detaillowongan', compact('data'));
-        return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);        
-    }
+
     public function editlowongan($id){
         $data = Lowongan::find($id);
         //return view('data.edit', compact('data'));
@@ -79,5 +70,48 @@ class AdminController extends Controller
         $data->save();
         //return redirect('/')->with('success', 'Data berhasil diperbarui');
         return response()->json(['message'=>'Update data Lowongan','data' => $data], 200); 
+    }
+    public function deletelowongan(Request $request, $id){
+
+    }
+    public function lihatuserlowongan(Request $request){
+        $data = DB::table('pilihlowongan')
+        ->leftJoin('datauser', 'pilihlowongan.id', '=', 'datauser.id')
+        ->leftJoin('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
+        ->select('datauser.nama_lengkap','lowongan.judul_lowongan','pilihlowongan.status')
+        ->get();
+        //return view('detaillowongan', compact('data'));
+        return response()->json(['message'=>'Lihat data user Lowongan','data' => $data], 200);        
+    }
+    public function detailuserlowongan(Request $request, $id){
+        $data = DB::table('pilihlowongan')
+        ->leftJoin('datauser', 'pilihlowongan.id', '=', 'datauser.id')
+        // ->leftJoin('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
+        ->select('datauser.nama_lengkap','datauser.no_ktp','datauser.tempat_lahir','datauser.tanggal_lahir','datauser.jenis_kelamin','datauser.status_pernikahan','datauser.alamat','datauser.telpon','datauser.pendidikan_terakhir')
+        ->where('pilihlowongan.id', '=', $id)
+        ->get();
+        return response()->json(['message'=>'berhasil menampilkan data','data' => $data], 200);
+    }
+    public function editstatus($id){
+        $data = pilihlowongan::find($id);
+        //return view('data.edit', compact('data'));
+        return response()->json(['message'=>'berhasil menampilkan data','data' => $data], 200);
+    }
+    public function prosesstatus(Request $request, $id){
+        $request->validate([
+            'status' => 'string',
+        ]);
+
+        // Cari data yang akan diperbarui berdasarkan ID
+        $data = pilihlowongan::find($id);
+
+        // Update data berdasarkan input formulir
+        $data->status = $request->input('status');
+        // tambahkan pembaruan lainnya sesuai kebutuhan
+
+        // Simpan data yang diperbarui
+        $data->save();
+        //return redirect('/')->with('success', 'Data berhasil diperbarui');
+        return response()->json(['message'=>'Update data status Lowongan','data' => $data], 200);
     }
 }
