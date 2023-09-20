@@ -17,7 +17,7 @@ class CreatePilihlowonganTable extends Migration
             $table->id();
             $table->string('status');
             $table->unsignedBigInteger('datauser_id');
-            $table->unsignedBigInteger('lowongan_id');
+             $table->unsignedBigInteger('lowongan_id');
             $table->timestamps();
             $table->foreign('datauser_id')->references('id')->on('datauser')->onDelete('cascade');
             $table->foreign('lowongan_id')->references('id')->on('lowongan')->onDelete('cascade');

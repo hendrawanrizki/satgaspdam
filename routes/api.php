@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::get('/lihatlowongan',[AdminController::class, 'lihatlowongan']);
+Route::get('/editlowongan/{id}',[AdminController::class, 'editlowongan']);
+Route::put('/proseseditlowongan/{id}',[AdminController::class, 'proseseditlowongan']);
+Route::post('/uploadlowongan',[AdminController::class, 'uploadlowongan']);
+Route::get('/detaillowongan/{id}',[AdminController::class, 'detaillowongan']);
+Route::post('/pilihlowongan/{id}',[UserController::class, 'uploaddatauser']);
+Route::get('/lowonganuser/{id}',[UserController::class, 'lowonganbyid']);
+Route::get('/kategorilowonganuser/{id}',[UserController::class, 'lowonganbyid']);
+Route::get('/kategoriuser',[UserController::class, 'lihatkategori']);

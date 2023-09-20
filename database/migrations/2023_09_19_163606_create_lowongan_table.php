@@ -20,8 +20,12 @@ class CreateLowonganTable extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->string('penempatan');
-            $table->integer('datauser_id');
+            $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
+            $table->foreign('kategori_id')
+            ->references('id')
+            ->on('')
+            ->onDelete('cascade');
         });
     }
 

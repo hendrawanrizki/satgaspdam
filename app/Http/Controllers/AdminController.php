@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Lowongan;
+use App\Models\pilihlowongan;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; 
+
+class AdminController extends Controller
+{
+    public function uploadlowongan(Request $request){
+         // Validasi data yang diterima dari formulir
+         $request->validate([
+            'judul_lowongan' => 'required|string',
+            'deskripsi_lowongan' => 'required|string',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_akhir' => 'required|date',
+            'penempatan' => 'required|string',
+            'kategori_lowongan' => 'required',
+        ]);
+
+        // Simpan data ke dalam database
+        $lowongan = new Lowongan([
+            'judul_lowongan' => $request->input('judul_lowongan'),
+            'deskripsi_lowongan' => $request->input('deskripsi_lowongan'),
+            'tanggal_mulai' => $request->input('tanggal_mulai'),
+            'tanggal_akhir' => $request->input('tanggal_akhir'),
+            'penempatan' => $request->input('penempatan'),
+            'kategori_lowongan' => $request->input('kategori_lowongan'),
+        ]);
+        $lowongan->save();
+        //return redirect('/lowongan')->with('success', 'Lowongan berhasil ditambahkan');
+        return response()->json(['message'=>'data berhasil disimpan','data' => $lowongan], 200);
+    }
+    public function lihatlowongan(Request $request) {
+        $data = Lowongan::all();
+       // return view('lowongan', compact('data'));
+        return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);
+    }
+    public function detaillowongan(Request $request, $id){
+        $data = DB::table('pilihlowongan')
+        ->join('datauser', 'pilihlowongan.id', '=', 'datauser.id')
+        // ->join('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
+        ->select('datauser.nama_lengkap','datauser.no_ktp','datauser.tempat_lahir','datauser.tanggal_lahir','datauser.jenis_kelamin', 'datauser.status_pernikahan','datauser.alamat','datauser.telpon','datauser.pendidikan_terakhir','pilihlowongan.status')
+        ->where('pilihlowongan.id','=', $id)
+        ->get();
+        //return view('detaillowongan', compact('data'));
+        return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);        
+    }
+    public function editlowongan($id){
+        $data = Lowongan::find($id);
+        //return view('data.edit', compact('data'));
+        return response()->json(['message'=>'berhasil menampilkan data','data' => $data], 200);
+    }
+    public function proseseditlowongan(Request $request, $id){
+        $request->validate([
+            'judul_lowongan' => 'string',
+            'deskripsi_lowongan' => 'string',
+            'tanggal_mulai' => 'date',
+            'tanggal_akhir' => 'date',
+            'penempatan' => 'string',
+            // tambahkan validasi lainnya sesuai kebutuhan
+        ]);
+
+        // Cari data yang akan diperbarui berdasarkan ID
+        $data = Lowongan::find($id);
+
+        // Update data berdasarkan input formulir
+        $data->judul_lowongan = $request->input('judul_lowongan');
+        $data->deskripsi_lowongan = $request->input('deskripsi_lowongan');
+        $data->tanggal_mulai = $request->input('tanggal_mulai');
+        $data->tanggal_akhir = $request->input('tanggal_akhir');
+        $data->penempatan = $request->input('penempatan');
+        $data->kategori_lowongan = $request->input('kategori_lowongan');
+        // tambahkan pembaruan lainnya sesuai kebutuhan
+
+        // Simpan data yang diperbarui
+        $data->save();
+        //return redirect('/')->with('success', 'Data berhasil diperbarui');
+        return response()->json(['message'=>'Update data Lowongan','data' => $data], 200); 
+    }
+}
