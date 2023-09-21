@@ -40,7 +40,7 @@
 <body>
 @include('partials.header')
 
-<h2>LIST LOWONGAN YANG TERSEDIA</h2>
+<!-- <h2>LIST LOWONGAN YANG TERSEDIA</h2>
 
 <div id="" class="card w-30 mb-3">
   <div class="card-body">
@@ -52,8 +52,32 @@
     </p>
     <a href="/formlowongan" class="btn btn-primary">Apply Lowongan</a>
   </div>
+</div> -->
+<div class="row mt-5">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">LOWONGAN TSI PDAM SURYA SEMBADA SURABAYA</h2>
+        <h6 class="card-text">deskripsi</h6>
+        <p class="card-text">
+            <small>Dibuka</small>
+        <h6>Penempatan : Surabaya</h6>
+        <h6>Terakhir ditutup : 30 September 2023</h6>
+    </p>
+    <a href="/formlowongan" class="btn btn-primary">Apply Lowongan</a>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div> -->
 </div>
-
 </body>
 
 </html>

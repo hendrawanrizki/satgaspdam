@@ -1,6 +1,8 @@
+<html>
+
 <footer id="footer" class="footer" >
 
-    <div class="container mt-4">
+    <div class="container mt-3">
       <div class="copyright">
         &copy; Copyright <strong><span>PDAM SURYA SEMBADA SURABAYA 2023</span></strong>. All Rights Reserved
       </div>
@@ -12,13 +14,12 @@
         Designed by SATGAS PDAM SURYA SEMBADA SURABAYA
       </div>
     </div>
-
   </footer><!-- End Footer -->
   <!-- End Footer -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
 
-  <div id="preloader"></div>
+  <!-- <div id="preloader"></div> -->
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -31,3 +32,5 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  </html>
