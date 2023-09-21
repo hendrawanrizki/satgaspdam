@@ -22,10 +22,7 @@ class CreateLowonganTable extends Migration
             $table->string('penempatan');
             $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
-            $table->foreign('kategori_id')
-            ->references('id')
-            ->on('')
-            ->onDelete('cascade');
+           
         });
     }
 

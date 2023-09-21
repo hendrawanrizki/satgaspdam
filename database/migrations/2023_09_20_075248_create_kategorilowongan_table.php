@@ -16,7 +16,6 @@ class CreateKategorilowonganTable extends Migration
         Schema::create('kategorilowongan', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kategori');
-            $table->timestamps();
         });
     }
 
