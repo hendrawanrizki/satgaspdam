@@ -17,15 +17,15 @@ class UserController extends Controller
         $request->validate([
           //  'file' => 'required|file|mimes:jpeg,png,pdf', // Sesuaikan dengan jenis file yang diperbolehkan
             'nama_lengkap' => 'required|string',
-            'no_ktp' => 'required|string|size:16',
+            'no_ktp' => 'required|integer',
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|string',
             'status_pernikahan' => 'required|string',
             'alamat' => 'required|string',
-            'telpon' => 'required|string|size:13',
+            'telpon' => 'required|string|max:13',
             'pendidikan_terakhir' => 'required|string',
-            'cv' => 'required|file|mimes:jpeg,png',
+            'cv' => 'required|file|mimes:jpeg,png,pdf',
             'kk' => 'required|file|mimes:jpeg,png',
             'npwp' => 'required|file|mimes:jpeg,png',
             'bpjs' => 'required|file|mimes:jpeg,png',
@@ -113,26 +113,30 @@ class UserController extends Controller
         'datauser_id' => $data->id,
     ]);
     Pilihlowongan::create([
-        'status' => 'Tahap Pengumpulan Berkas',
+        'status' => 0,
         'datauser_id' => $data->id,
         'lowongan_id' => $id,
     ]);
-        // return redirect('/lowongan')->with('success', 'Data berhasil diunggah.');
-        return response()->json(['message'=>'Berhasil di simpan data Lowongan'], 200);  
+        return redirect('/')->with('success', 'Data berhasil diunggah.');
+        // return response()->json(['message'=>'Berhasil di simpan data Lowongan'], 200);  
     }
     // public  function pilihlowonganbyid(Request $request, $id){
     //     $data = Lowongan::where('id', $id)->get();
     //     //   return view('lowongan', compact('data'));
     //     return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);  
     // }
+    public function pilihlowonganbyid($id)
+    {
+        return view('lowongan.form', compact('id'));
+    }
     public function lowonganbyid(Request $request, $id){
         $data = Lowongan::where('kategori_lowongan', $id)->get();
-     //   return view('lowongan', compact('data'));
-     return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);  
+       return view('lowongan.home', ['data' => $data]);
+    //  return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);  
     }
     public function lihatkategori(Request $request){
         $data = kategorilowongan::all();
-        return response()->json(['message'=>'Lihat data kategori Lowongan','data' => $data], 200);  
-        //return view('lihatkategori', compact('data'));
+       // return response()->json(['message'=>'Lihat data kategori Lowongan','data' => $data], 200);  
+        return view('index',  ['data' => $data]);
     }
 }

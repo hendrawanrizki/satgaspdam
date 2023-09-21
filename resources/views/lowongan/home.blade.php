@@ -56,20 +56,23 @@
   </div>
 </div> -->
 <div class="row mt-5 mb-4" style="margin-left: 20px;">
+  
   <div class="col-sm-6">
+    @foreach ($data as $post)
     <div class="card">
       <div class="card-body">
-        <h2 class="card-title">LOWONGAN TSI PDAM SURYA SEMBADA SURABAYA</h2>
-        <h6 class="card-text">deskripsi</h6>
+        <h2 class="card-title">{{$post->judul_lowongan}}</h2>
+        <h6 class="card-text">{{$post->judul_lowongan}}</h6>
         <p class="card-text">
-            <small>Dibuka</small>
-        <h6>Penempatan : Surabaya</h6>
-        <h6>Terakhir ditutup : 30 September 2023</h6>
-    </p>
-    <a href="/formlowongan" class="btn btn-primary">Apply Lowongan</a>
+          <h6>Penempatan : {{$post->penempatan}}</h6>
+          <h6>Terakhir ditutup : {{$post->tanggal_akhir}}</h6>
+        </p>
+          <a href="/lowonganuser/{{$post->id}}" class="btn btn-primary">Lamar Lowongan</a>
       </div>
     </div>
+    @endforeach
   </div>
+  
   <!-- <div class="col-sm-6">
     <div class="card">
       <div class="card-body">

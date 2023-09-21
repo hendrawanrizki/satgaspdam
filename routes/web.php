@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,26 +13,29 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [UserController::class, 'lihatkategori']);
+Route::get('/kategorilowonganuser/{id}',[UserController::class, 'lowonganbyid']);
+Route::get('/lowonganuser/{id}',[UserController::class, 'pilihlowonganbyid']);
+Route::post('/pilihlowongan/{id}',[UserController::class, 'uploaddatauser'])->name('tambahdata');
+// Route::get('/', function () {
+//     return view('index');
+// });
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/about', function () {
+//     return view('about');
+// });
 
-Route::get('/about', function () {
-    return view('about');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/lowongan', function () {
+//     return view('lowongan/home');
+// });
 
-Route::get('/lowongan', function () {
-    return view('lowongan/home');
-});
-
-Route::get('/formlowongan', function () {
-    return view('lowongan/form');
-});
+// Route::get('/formlowongan', function () {
+//     return view('lowongan/form');
+// });
 // Route::get('/', function () {
 //     return 'Halaman Root';
 // });

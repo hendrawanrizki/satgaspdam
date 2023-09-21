@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Lowongan;
 use App\Models\pilihlowongan;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; 
@@ -114,4 +117,55 @@ class AdminController extends Controller
         //return redirect('/')->with('success', 'Data berhasil diperbarui');
         return response()->json(['message'=>'Update data status Lowongan','data' => $data], 200);
     }
+    public function showLoginForm()
+{
+    return view('auth.login');
+}
+    public function login(Request $request){
+          // Validasi data login
+          $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Coba melakukan login
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            // Jika login berhasil, arahkan ke halaman yang sesuai
+            // return redirect('/dashboard');
+            return response()->json(['message'=>'Berhasil Login'], 200);
+        }
+
+        // Jika login gagal, arahkan kembali ke halaman login dengan pesan error
+        // return redirect()->route('login')
+        //     ->with('error', 'Email atau password salah. Silakan coba lagi.');
+        return response()->json(['message'=>'Gagal Login'], 400);
+    }
+    public function showRegistrationForm()
+{
+    return view('auth.register');
+}
+    public function register(Request $request)
+{
+    // Validasi data registrasi
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|confirmed|min:8',
+    ]);
+
+    // Buat pengguna baru
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+    ]);
+
+    // Otentikasi pengguna setelah registrasi
+    // auth()->login($user);
+
+    // Redirect ke halaman setelah registrasi berhasil
+    // return redirect(RouteServiceProvider::HOME);
+    return response()->json(['message'=>'Berhasil Registrasi','data' => $user], 200);
+}
 }

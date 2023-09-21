@@ -30,3 +30,10 @@ Route::post('/pilihlowongan/{id}',[UserController::class, 'uploaddatauser']);
 Route::get('/lowonganuser/{id}',[UserController::class, 'lowonganbyid']);
 Route::get('/kategorilowonganuser/{id}',[UserController::class, 'lowonganbyid']);
 Route::get('/kategoriuser',[UserController::class, 'lihatkategori']);
+Route::get('/login', [AdminController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AdminController::class, 'login']);
+// Rute untuk menampilkan halaman registrasi
+Route::get('/register', [AdminController::class, 'showRegistrationForm'])->name('register');
+
+// Rute untuk memproses registrasi
+Route::post('/register', [AdminController::class, 'register']);

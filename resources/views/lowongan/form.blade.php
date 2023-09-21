@@ -47,7 +47,8 @@
 
         <h1 class="text-white mb-4">Form Data Diri</h1>
 
-        <form action="" method="post">
+        <form  method="POST" action="{{ route('tambahdata', ['id'=>$id]) }}">
+          @csrf
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
 
@@ -59,7 +60,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" name="nama_lengkap" class="form-control form-control-lg" />
 
               </div>
             </div>
@@ -73,7 +74,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" name="no_ktp" class="form-control form-control-lg" />
 
               </div>
             </div>
@@ -87,7 +88,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" name="tempat_lahir" class="form-control form-control-lg" />
 
               </div>
             </div>
@@ -101,7 +102,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="date" class="form-control form-control-lg" />
+                <input type="date" name="tanggal_lahir" class="form-control form-control-lg" />
 
               </div>
             </div>
@@ -115,7 +116,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" name="jenis_kelamin" class="form-control form-control-lg" />
 
               </div>
             </div>
@@ -129,7 +130,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="email" class="form-control form-control-lg" placeholder="" />
+                <input type="text" name="status_pernikahan" class="form-control form-control-lg" placeholder="" />
 
               </div>
             </div>
@@ -143,7 +144,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <textarea class="form-control" rows="3" placeholder="Isikan Alamat Lengkap"></textarea>
+                <textarea class="form-control" name="alamat" rows="3" placeholder="Isikan Alamat Lengkap"></textarea>
 
               </div>
             </div>
@@ -157,7 +158,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" name="telpon" class="form-control form-control-lg" />
 
               </div>
             </div>
@@ -171,7 +172,7 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" class="form-control form-control-lg" />
+                <input type="text" name="pendidikan_terakhir" class="form-control form-control-lg" />
 
               </div>
             </div>
@@ -182,7 +183,7 @@
                 <h6 class="mb-0">Upload CV</h6>
               </div>
               <div class="col-md-9 pe-5"> 
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="cv"/>
                 <div class="small text-muted mt-2">Upload CV dalam bentuk PDF (max 1MB)</div>
               </div>
             </div>
@@ -193,7 +194,7 @@
                 <h6 class="mb-0">KTP</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="ktp"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)/div>
               </div>
             </div>
@@ -204,7 +205,7 @@
                 <h6 class="mb-0">KK</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="kk"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
               </div>
             </div>
@@ -215,7 +216,7 @@
                 <h6 class="mb-0">NPWP</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="npwp"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
               </div>
             </div>
@@ -226,7 +227,7 @@
                 <h6 class="mb-0">BPJS</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="bpjs"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
               </div>
             </div>
@@ -237,7 +238,7 @@
                 <h6 class="mb-0">SKCK</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="skck"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
               </div>
             </div>
@@ -248,7 +249,7 @@
                 <h6 class="mb-0">SURAT SEHAT</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="surat_sehat"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
               </div>
             </div>
@@ -259,7 +260,7 @@
                 <h6 class="mb-0">FOTO</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="foto"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
               </div>
             </div>
@@ -270,7 +271,7 @@
                 <h6 class="mb-0">SERTIFIKAT</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="sertifikat"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
               </div>
             </div>
@@ -281,7 +282,7 @@
                 <h6 class="mb-0">IJAZAH</h6>
               </div>
               <div class="col-md-9 pe-5">
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <input class="form-control form-control-lg" id="formFileLg" type="file" name="ijazah"/>
                 <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
               </div>
             </div>
