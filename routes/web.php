@@ -14,22 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('index');
 });
 
 Route::get('/about', function () {
-    return view('about', [
-        'name' => 'Mochammad Rizki Hendrawan',
-        'email' => 'rizkihendrawan789@gmail.com',
-        'address' => 'Mojosari',
-        "image" => "RIZKI.jpg"
-    ]);
+    return view('about');
 });
 
-Route::get('/blog', function () {
-    return view('blog');
+Route::get('/login', function () {
+    return view('login');
 });
 
+Route::get('/lowongan', function () {
+    return view('lowongan/home');
+});
+
+Route::get('/formlowongan', function () {
+    return view('lowongan/form');
+});
 // Route::get('/', function () {
 //     return 'Halaman Root';
 // });
@@ -40,4 +42,4 @@ Route::get('/blog', function () {
 
 // Route::get('/blog', function () {
 //     return 'Halaman Blog';
-// });
+// }
