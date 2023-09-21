@@ -40,20 +40,21 @@
 <body>
 @include('partials.header')
 
-<section class="vh-100" style="background-color: #2779e2;">
+<section class="vh-200" style="background-color: #2779e2;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-9">
 
-        <h1 class="text-white mb-4">Apply for a job</h1>
+        <h1 class="text-white mb-4">Form Data Diri</h1>
 
+        <form action="" method="post">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
 
             <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
 
-                <h6 class="mb-0">Full name</h6>
+                <h6 class="mb-0">Nama Lengkap</h6>
 
               </div>
               <div class="col-md-9 pe-5">
@@ -64,65 +65,242 @@
             </div>
 
             <hr class="mx-n3">
-
-            <div class="row align-items-center py-3">
+            <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
 
-                <h6 class="mb-0">Email address</h6>
+                <h6 class="mb-0">No KTP</h6>
 
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="email" class="form-control form-control-lg" placeholder="example@example.com" />
+                <input type="text" class="form-control form-control-lg" />
 
               </div>
             </div>
 
             <hr class="mx-n3">
-
-            <div class="row align-items-center py-3">
+            <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
 
-                <h6 class="mb-0">Full name</h6>
+                <h6 class="mb-0">Tempat Lahir</h6>
 
               </div>
               <div class="col-md-9 pe-5">
 
-                <textarea class="form-control" rows="3" placeholder="Message sent to the employer"></textarea>
+                <input type="text" class="form-control form-control-lg" />
 
               </div>
             </div>
 
             <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
 
+                <h6 class="mb-0">Tanggal Lahir</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="date" class="form-control form-control-lg" />
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Jenis Kelamin</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" class="form-control form-control-lg" />
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
             <div class="row align-items-center py-3">
               <div class="col-md-3 ps-5">
 
+                <h6 class="mb-0">Status Pernikahan</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="email" class="form-control form-control-lg" placeholder="" />
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Alamat</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <textarea class="form-control" rows="3" placeholder="Isikan Alamat Lengkap"></textarea>
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Telepon</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" class="form-control form-control-lg" />
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Pendidikan Terakhir</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" class="form-control form-control-lg" />
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
                 <h6 class="mb-0">Upload CV</h6>
-
               </div>
-              <div class="col-md-9 pe-5">
-
+              <div class="col-md-9 pe-5"> 
                 <input class="form-control form-control-lg" id="formFileLg" type="file" />
-                <div class="small text-muted mt-2">Upload your CV/Resume or any other relevant file. Max file
-                  size 50 MB</div>
-
+                <div class="small text-muted mt-2">Upload CV dalam bentuk PDF (max 1MB)</div>
               </div>
             </div>
 
             <hr class="mx-n3">
-
-            <div class="px-5 py-4">
-              <button type="submit" class="btn btn-primary btn-lg">Send application</button>
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">KTP</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)/div>
+              </div>
             </div>
 
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">KK</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">NPWP</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">BPJS</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">SKCK</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">SURAT SEHAT</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">FOTO</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">SERTIFIKAT</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+                <h6 class="mb-0">IJAZAH</h6>
+              </div>
+              <div class="col-md-9 pe-5">
+                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <div class="small text-muted mt-2">Upload format .jpg/.png (max 1MB)</div>
+              </div>
+            </div>
+
+            
+            <hr class="mx-n3">
+            <div class="px-5 py-4">
+              <button type="submit" class="btn btn-primary btn-lg">Kirim Data</button>
+            </div>
           </div>
         </div>
+        </form>
 
       </div>
     </div>
   </div>
 </section>
+
+@include('partials.footer')
 
 <!-- <h2>ISI DATA DIBAWAH INI</h2>
 

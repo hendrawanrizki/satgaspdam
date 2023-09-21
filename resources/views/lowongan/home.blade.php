@@ -40,6 +40,8 @@
 <body>
 @include('partials.header')
 
+<h1 class="text-center mb-4 mt-3">Daftar Lowongan </h1>
+
 <!-- <h2>LIST LOWONGAN YANG TERSEDIA</h2>
 
 <div id="" class="card w-30 mb-3">
@@ -53,7 +55,7 @@
     <a href="/formlowongan" class="btn btn-primary">Apply Lowongan</a>
   </div>
 </div> -->
-<div class="row mt-5">
+<div class="row mt-5 mb-4" style="margin-left: 20px;">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
@@ -78,6 +80,8 @@
     </div>
   </div> -->
 </div>
-</body>
+
+@include('partials.footer')
+
 
 </html>
