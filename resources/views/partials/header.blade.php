@@ -59,7 +59,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="assets/img/logopdam.png" alt="">
+        <img src="../../assets/img/logopdam.png" alt="">
         <!-- <h1>SATGAS PDAM SURYA SEMBADA<span>.</span></h1> -->
       </a>
       <nav id="navbar" class="navbar">
