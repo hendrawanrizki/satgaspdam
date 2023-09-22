@@ -150,12 +150,13 @@ class UserController extends Controller
     //  return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);  
     }
     public function lihatkategori(Request $request){
-        $data = DB::table('lowongan')
-        ->leftJoin('kategorilowongan', 'lowongan.kategori_lowongan', '=', 'kategorilowongan.id')
-        ->select('lowongan.deskripsi_lowongan','lowongan.judul_lowongan','lowongan.tanggal_akhir','lowongan.penempatan','kategorilowongan.nama_kategori','kategorilowongan.id')
-        ->get();
-        // $data = kategorilowongan::all();
+        // $data = DB::table('lowongan')
+        // ->leftJoin('kategorilowongan', 'lowongan.id', '=', 'kategorilowongan.id')
+        // ->select('lowongan.deskripsi_lowongan','lowongan.judul_lowongan','lowongan.tanggal_akhir','lowongan.penempatan','kategorilowongan.nama_kategori','lowongan.kategori_lowongan','lowongan.id')
+        // ->get();
+        $data = kategorilowongan::all();
+        $datas = Lowongan::all();
        // return response()->json(['message'=>'Lihat data kategori Lowongan','data' => $data], 200);  
-        return view('index',  ['data' => $data]);
+        return view('index',  ['data' => $data, 'datas' => $datas]);
     }
 }
