@@ -21,13 +21,9 @@ Route::post('/pilihlowongan/{id}',[UserController::class, 'uploaddatauser'])->na
 Route::get('/login', [AdminController::class, 'lihatlogin']);
 Route::get('/register', [AdminController::class, 'lihatregister']);
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
-// Route::get('/about', function () {
-//     return view('about');
-// });
+Route::get('/admin', function () {
+    return view('admin.home');
+});
 
 // Route::get('/login', function () {
 //     return view('login');
