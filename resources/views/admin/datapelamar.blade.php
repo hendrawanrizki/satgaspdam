@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Pelamar</h1>
+            <h1>Data Peserta Pelamar</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data Pelamar</li>
+              <li class="breadcrumb-item active">Data Peserta Pelamar</li>
             </ol>
           </div>
         </div>
@@ -32,16 +32,16 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Lowongan dan Data Peserta</h3>
+          <h3 class="card-title">Data Peserta Pelamar</h3>
 
-          <div class="card-tools">
+          {{-- <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
               <i class="fas fa-minus"></i>
             </button>
             <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
               <i class="fas fa-times"></i>
             </button>
-          </div>
+          </div> --}}
         </div>
         <div class="card-body p-0">
           <table class="table table-striped projects">
@@ -63,32 +63,45 @@
                           Status Verifikasi
                       </th>
                       <th style="width: 20%">
+                        Aksi
                       </th>
                   </tr>
               </thead>
               <tbody>
                   <tr>
+                    @foreach ($data as $post) 
                       <td>
-                          1
+                        {{ $post->id}}
                       </td>
                       <td>
                           <a>
-                              Operator
+                            {{ $post->judul_lowongan}}
                           </a>
                           <br/>
                       </td>
                       <td>
                           <a>
-                            Budi Santoso
+                            {{ $post->nama_lengkap}}
                           </a>
                       </td>
                       <td>
                         <a>
-                            20-09-2023
+                          {{ $post->created_at}}
                         </a>
                       </td>
                       <td class="project-state">
-                          <span class="badge badge-success">Selesai</span>
+                          {{-- {{
+                            if($post->status == 0){
+                              echo '<span class="badge badge-danger"></span>';
+                            }else {
+                             echo '<span class="badge badge-success"></span>';
+                            }
+                            }} --}}
+                            @if($post->status == 0)
+                            <span class="badge badge-danger">Belum Selesai</span>
+                        @else
+                        <span class="badge badge-success">Selesai</span>
+                        @endif
                       </td>
                       <td class="project-actions text-right">
                           <a class="btn btn-primary btn-sm" href="#">
@@ -107,6 +120,8 @@
                               Delete
                           </a>
                       </td>
+                      @endforeach
+                    </tr>
               </tbody>
           </table>
         </div>

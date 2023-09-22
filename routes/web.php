@@ -17,21 +17,17 @@ Route::get('/', [UserController::class, 'lihatkategori']);
 Route::get('/kategorilowonganuser/{id}',[UserController::class, 'lowonganbyid']);
 Route::get('/lowonganuser/{id}',[UserController::class, 'pilihlowonganbyid']);
 Route::post('/pilihlowongan/{id}',[UserController::class, 'uploaddatauser'])->name('tambahdata');
-
+Route::post('/login', [AdminController::class, 'login'])->name('login');
 Route::get('/login', [AdminController::class, 'lihatlogin']);
 Route::get('/register', [AdminController::class, 'lihatregister']);
-
+Route::post('/register', [AdminController::class, 'register']);
 Route::get('/admin', function () {
-    return view('admin/home');
+    return view('admin.home');
 });
 
-Route::get('/admin/pelamar', function () {
-    return view('admin/datapelamar');
-});
+Route::get('/admin/pelamar', [AdminController::class, 'lihatuserlowongan']);
 
-Route::get('/admin/lowongan', function () {
-    return view('admin/datalowongan');
-});
+Route::get('/admin/lowongan', [AdminController::class, 'lihatlowongan']);
 
 // Route::get('/login', function () {
 //     return view('login');

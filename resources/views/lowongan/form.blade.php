@@ -7,9 +7,9 @@
 
         <h1 class="text-white mb-4">Form Data Diri</h1>
 
-        <form  method="POST" action="{{ route('tambahdata') }}" enctype="multipart/form-data">
+        <form  method="POST" action="{{ route('tambahdata', ['id' => $id]) }}" enctype="multipart/form-data">
           @csrf
-          {{-- <input type="hidden" name="id" value="{{ $id }}"> --}}
+          <input type="hidden" name="id" value="{{ $id }}">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body">
 

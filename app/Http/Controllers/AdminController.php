@@ -37,9 +37,12 @@ class AdminController extends Controller
         return response()->json(['message'=>'data berhasil disimpan','data' => $lowongan], 200);
     }
     public function lihatlowongan(Request $request) {
-        $data = Lowongan::all();
-       // return view('lowongan', compact('data'));
-        return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);
+        $data = DB::table('lowongan')
+        ->leftJoin('kategorilowongan', 'lowongan.kategori_lowongan', '=', 'kategorilowongan.id')
+        ->select('lowongan.id','lowongan.deskripsi_lowongan','lowongan.judul_lowongan','lowongan.tanggal_mulai','lowongan.tanggal_akhir','lowongan.penempatan','kategorilowongan.nama_kategori')
+        ->get();
+       return view('admin/datalowongan', ['data' => $data]);
+        //return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);
     }
 
     public function editlowongan($id){
@@ -81,10 +84,10 @@ class AdminController extends Controller
         $data = DB::table('pilihlowongan')
         ->leftJoin('datauser', 'pilihlowongan.id', '=', 'datauser.id')
         ->leftJoin('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
-        ->select('datauser.nama_lengkap','lowongan.judul_lowongan','pilihlowongan.status')
+        ->select('datauser.nama_lengkap','lowongan.judul_lowongan','pilihlowongan.status','pilihlowongan.created_at','pilihlowongan.id')
         ->get();
-        //return view('detaillowongan', compact('data'));
-        return response()->json(['message'=>'Lihat data user Lowongan','data' => $data], 200);        
+        return view('admin/datapelamar', ['data' => $data]);
+       // return response()->json(['message'=>'Lihat data user Lowongan','data' => $data], 200);        
     }
     public function detailuserlowongan(Request $request, $id){
         $data = DB::table('pilihlowongan')
@@ -127,19 +130,17 @@ class AdminController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
         // Coba melakukan login
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // Jika login berhasil, arahkan ke halaman yang sesuai
-            // return redirect('/dashboard');
-            return response()->json(['message'=>'Berhasil Login'], 200);
+         return redirect('/admin');
+            // return response()->json(['message'=>'Berhasil Login'], 200);
         }
 
         // Jika login gagal, arahkan kembali ke halaman login dengan pesan error
-        // return redirect()->route('login')
-        //     ->with('error', 'Email atau password salah. Silakan coba lagi.');
-        return response()->json(['message'=>'Gagal Login'], 400);
+        return redirect('/login');
+        // return response()->json(['message'=>'Gagal Login'], 400);
     }
     public function lihatregister()
 {

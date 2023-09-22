@@ -49,7 +49,7 @@ class UserController extends Controller
         $noktp = $request->input('no_ktp');
         $tempatlahir = $request->input('tempat_lahir');
         $tanggallahir = $request->input('tanggal_lahir');
-        $formattanggal = Carbon::createFromFormat('yyyy-dd-MM', $tanggallahir)->format('dd-MM-yyyy');
+        //$formattanggal = Carbon::createFromFormat('dd-MM-yyyy', $tanggallahir)->format('yyyy-dd-MM');
         $jeniskelamin = $request->input('jenis_kelamin');
         $statuspernikahan = $request->input('status_pernikahan');
         $alamat = $request->input('alamat');
@@ -61,7 +61,7 @@ class UserController extends Controller
             'nama_lengkap' => $nama,
             'no_ktp' => $noktp,
             'tempat_lahir' => $tempatlahir,
-            'tanggal_lahir' => $formattanggal,
+            'tanggal_lahir' => $tanggallahir,
             'jenis_kelamin' => $jeniskelamin,
             'status_pernikahan' => $statuspernikahan,
             'alamat' => $alamat,
@@ -116,14 +116,15 @@ class UserController extends Controller
         'sertifikat' => $fileNamesertifikat,
         'datauser_id' => $data->id,
     ]);
-    $id_lowongan = Lowongan::find($id);
+    // $id_lowongan = Lowongan::find($id);
     Pilihlowongan::create([
         'status' => 0,
         'datauser_id' => $data->id,
-        'lowongan_id' => $id_lowongan,
+        'lowongan_id' => $id,
     ]);
-        return redirect('/')->with('success', 'Data berhasil diunggah.');
-        // return response()->json(['message'=>'Berhasil di simpan data Lowongan'], 200);  
+        //return view('index')->with('success', 'Data berhasil diunggah.');
+       return redirect('/')->with('success', 'Data berhasil diunggah.');
+        //return response()->json(['message'=>'Berhasil di simpan data Lowongan'], 200);  
     }
     // public  function pilihlowonganbyid(Request $request, $id){
     //     $data = Lowongan::where('id', $id)->get();
@@ -132,11 +133,11 @@ class UserController extends Controller
     // }
     public function pilihlowonganbyid($id)
     {
-        $data = Lowongan::find($id);
+        $id = Lowongan::find($id);
         // $data = DB::table('lowongan')
         // ->where('id','=', $id)
         // ->get();
-        return view('lowongan.form', ['data'=> $data]);
+        return view('lowongan.form', ['id'=> $id]);
     }
     public function lowonganbyid(Request $request, $id){
         // $data = Lowongan::where('kategori_lowongan', $id)->get();
@@ -149,7 +150,11 @@ class UserController extends Controller
     //  return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);  
     }
     public function lihatkategori(Request $request){
-        $data = kategorilowongan::all();
+        $data = DB::table('lowongan')
+        ->leftJoin('kategorilowongan', 'lowongan.kategori_lowongan', '=', 'kategorilowongan.id')
+        ->select('lowongan.deskripsi_lowongan','lowongan.judul_lowongan','lowongan.tanggal_akhir','lowongan.penempatan','kategorilowongan.nama_kategori','kategorilowongan.id')
+        ->get();
+        // $data = kategorilowongan::all();
        // return response()->json(['message'=>'Lihat data kategori Lowongan','data' => $data], 200);  
         return view('index',  ['data' => $data]);
     }
