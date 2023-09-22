@@ -20,7 +20,7 @@ class CreateLowonganTable extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->string('penempatan');
-            $table->unsignedBigInteger('kategori_id');
+            $table->unsignedBigInteger('kategori_lowongan');
             $table->timestamps();
            
         });

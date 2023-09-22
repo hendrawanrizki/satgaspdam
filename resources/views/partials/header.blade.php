@@ -1,5 +1,15 @@
-<html>
- <!-- Favicons -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Impact Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -17,6 +27,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  {{-- <link href="{{ asset('css/main.css') }}" rel="stylesheet"> --}}
 
   <!-- =======================================================
   * Template Name: Impact
@@ -25,9 +36,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+</head>
 
-<!-- ======= Header ======= -->
-<section id="topbar" class="topbar d-flex align-items-center">
+<body>
+
+  <section id="topbar" class="topbar d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
         <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">satgas@pdam-sby.go.id</a></i>
@@ -41,7 +54,6 @@
       </div>
     </div>
   </section><!-- End Top Bar -->
-
   <header id="header" class="header d-flex align-items-center">
 
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -85,5 +97,3 @@
 
     </div>
   </header><!-- End Header -->
-  <!-- End Header -->
-  </html>

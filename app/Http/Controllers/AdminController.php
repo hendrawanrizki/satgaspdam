@@ -117,9 +117,9 @@ class AdminController extends Controller
         //return redirect('/')->with('success', 'Data berhasil diperbarui');
         return response()->json(['message'=>'Update data status Lowongan','data' => $data], 200);
     }
-    public function showLoginForm()
+    public function lihatlogin()
 {
-    return view('auth.login');
+    return view('login');
 }
     public function login(Request $request){
           // Validasi data login
@@ -141,9 +141,9 @@ class AdminController extends Controller
         //     ->with('error', 'Email atau password salah. Silakan coba lagi.');
         return response()->json(['message'=>'Gagal Login'], 400);
     }
-    public function showRegistrationForm()
+    public function lihatregister()
 {
-    return view('auth.register');
+    return view('register');
 }
     public function register(Request $request)
 {

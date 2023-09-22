@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use App\Models\Datauser;
 use App\Models\Pilihlowongan;
 use App\Models\Filedokumen;
@@ -8,11 +9,13 @@ use App\Models\Lowongan;
 use App\Models\kategorilowongan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function uploaddatauser(Request $request, $id)
     {
+        // $data_id = $request->input('id');
         // Validasi request jika diperlukan
         $request->validate([
           //  'file' => 'required|file|mimes:jpeg,png,pdf', // Sesuaikan dengan jenis file yang diperbolehkan
@@ -46,6 +49,7 @@ class UserController extends Controller
         $noktp = $request->input('no_ktp');
         $tempatlahir = $request->input('tempat_lahir');
         $tanggallahir = $request->input('tanggal_lahir');
+        $formattanggal = Carbon::createFromFormat('yyyy-dd-MM', $tanggallahir)->format('dd-MM-yyyy');
         $jeniskelamin = $request->input('jenis_kelamin');
         $statuspernikahan = $request->input('status_pernikahan');
         $alamat = $request->input('alamat');
@@ -57,7 +61,7 @@ class UserController extends Controller
             'nama_lengkap' => $nama,
             'no_ktp' => $noktp,
             'tempat_lahir' => $tempatlahir,
-            'tanggal_lahir' => $tanggallahir,
+            'tanggal_lahir' => $formattanggal,
             'jenis_kelamin' => $jeniskelamin,
             'status_pernikahan' => $statuspernikahan,
             'alamat' => $alamat,
@@ -112,10 +116,11 @@ class UserController extends Controller
         'sertifikat' => $fileNamesertifikat,
         'datauser_id' => $data->id,
     ]);
+    $id_lowongan = Lowongan::find($id);
     Pilihlowongan::create([
         'status' => 0,
         'datauser_id' => $data->id,
-        'lowongan_id' => $id,
+        'lowongan_id' => $id_lowongan,
     ]);
         return redirect('/')->with('success', 'Data berhasil diunggah.');
         // return response()->json(['message'=>'Berhasil di simpan data Lowongan'], 200);  
@@ -127,11 +132,20 @@ class UserController extends Controller
     // }
     public function pilihlowonganbyid($id)
     {
-        return view('lowongan.form', compact('id'));
+        $data = Lowongan::find($id);
+        // $data = DB::table('lowongan')
+        // ->where('id','=', $id)
+        // ->get();
+        return view('lowongan.form', ['data'=> $data]);
     }
     public function lowonganbyid(Request $request, $id){
-        $data = Lowongan::where('kategori_lowongan', $id)->get();
-       return view('lowongan.home', ['data' => $data]);
+        // $data = Lowongan::where('kategori_lowongan', $id)->get();
+        
+    //    $idkategori = kategorilowongan::find($id);
+        $data = DB::table('lowongan')
+        ->where('kategori_lowongan','=', $id)
+        ->get();
+       return view('lowongan.home',['data'=> $data]);
     //  return response()->json(['message'=>'Lihat data Lowongan','data' => $data], 200);  
     }
     public function lihatkategori(Request $request){

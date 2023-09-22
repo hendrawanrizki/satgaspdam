@@ -17,6 +17,10 @@ Route::get('/', [UserController::class, 'lihatkategori']);
 Route::get('/kategorilowonganuser/{id}',[UserController::class, 'lowonganbyid']);
 Route::get('/lowonganuser/{id}',[UserController::class, 'pilihlowonganbyid']);
 Route::post('/pilihlowongan/{id}',[UserController::class, 'uploaddatauser'])->name('tambahdata');
+
+Route::get('/login', [AdminController::class, 'lihatlogin']);
+Route::get('/register', [AdminController::class, 'lihatregister']);
+
 // Route::get('/', function () {
 //     return view('index');
 // });
@@ -30,7 +34,7 @@ Route::post('/pilihlowongan/{id}',[UserController::class, 'uploaddatauser'])->na
 // });
 
 // Route::get('/lowongan', function () {
-//     return view('lowongan/home');
+//     return view('home');
 // });
 
 // Route::get('/formlowongan', function () {
