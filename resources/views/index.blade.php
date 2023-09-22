@@ -72,19 +72,21 @@
       </div>
 
       <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
-
+ @foreach($data as $posts)
         <div class="col-lg-4 col-md-6">
           <div class="service-item  position-relative">
             <div class="icon">
               <i class="bi bi-activity"></i>
             </div>
-            <h3>Nesciunt Mete</h3>
-            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-            <a href="#" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
+            <h3>{{$posts->judul_lowongan}}</h3>
+            <p>{{$posts->deskripsi_lowongan}}</p>
+            <span> <b> Penempatan:</b> {{$posts->penempatan}}</span><br>
+            <small> <b> Tanggal ditutup:</b> {{$posts->tanggal_akhir}}</small> <br>
+            <a href="/lowonganuser/{{$posts->id}}" class="readmore stretched-link">Lamar <i class="bi bi-arrow-right"></i></a>
           </div>
         </div><!-- End Service Item -->
-
-        <div class="col-lg-4 col-md-6">
+@endforeach
+        {{-- <div class="col-lg-4 col-md-6">
           <div class="service-item position-relative">
             <div class="icon">
               <i class="bi bi-broadcast"></i>
@@ -137,7 +139,7 @@
             <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
             <a href="#" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
           </div>
-        </div><!-- End Service Item -->
+        </div><!-- End Service Item --> --}}
 
       </div>
 
