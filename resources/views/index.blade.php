@@ -34,7 +34,7 @@
           </div>
           @endforeach
           <!--End Icon Box -->
-{{-- 
+{{--
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-archive"></i></div>
