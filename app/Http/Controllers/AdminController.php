@@ -99,8 +99,8 @@ class AdminController extends Controller
     }
     public function lihatuserlowongan(Request $request){
         $data = DB::table('pilihlowongan')
-        ->leftJoin('datauser', 'pilihlowongan.id', '=', 'datauser.id')
-        ->leftJoin('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
+        ->leftJoin('datauser', 'pilihlowongan.datauser_id', '=', 'datauser.id')
+        ->leftJoin('lowongan', 'pilihlowongan.lowongan_id', '=', 'lowongan.id')
         ->select('datauser.nama_lengkap','lowongan.judul_lowongan','pilihlowongan.status','pilihlowongan.created_at','pilihlowongan.id')
         ->get();
         return view('admin/datapelamar', ['data' => $data]);
