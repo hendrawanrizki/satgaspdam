@@ -33,7 +33,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/lowongan', [AdminController::class, 'lihatlowongan']);
     Route::get('/detailuser/{id}',[AdminController::class, 'detailuserlowongan']);
     Route::get('/tambahlowongan',[AdminController::class, 'tambahlowongan']);
-    Route::post('/uploadlowongan',[AdminController::class, 'uploadlowongan'])->name('tambahlowongan');
+    Route::post('/uploadlowongan',[AdminController::class, 'uploadlowongan'])->name('uploadlowongan');
+    Route::get('/tambahpengumuman',[AdminController::class, 'tambahpengumuman']);
 });
 // Route::get('/login', function () {
 //     return view('login');

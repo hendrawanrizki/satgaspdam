@@ -47,65 +47,36 @@
                     <th class="text-center">Nama Lowongan</th>
                     <th class="text-center">Tanggal Seleksi</th>
                     <th class="text-center">Lokasi Seleksi</th>
+                    <th class="text-center">File</th>
                     <th class="text-center">Aksi</th>
-                    {{-- <th style="width: 1%">
-                        No.
-                    </th>
-                    <th style="width: 20%">
-                        Nama Lowongan
-                    </th>
-                    <th style="width: 30%">
-                        Nama Peserta
-                    </th>
-                    <th style="width: 30%">
-                        Tanggal Upload
-                    </th>
-                    <th style="width: 8%" class="text-center">
-                        Status Verifikasi
-                    </th>
-                    <th style="width: 20%">
-                      Aksi
-                    </th> --}}
                 </tr>
             </thead>
             <tbody>
-              {{-- @foreach ($data as $post)  --}}
+              @foreach ($data as $post) 
                 <tr>
                  
                     <td>
-                      {{-- {{ $post->id}} --}}
+                    {{$post->id}}
                     </td>
                     <td>
-                        <a>
-                          {{-- {{ $post->judul_lowongan}} --}}
-                        </a>
-                        <br/>
+                      {{$post->nama_pengumuman}}
                     </td>
                     <td>
-                        <a>
-                          {{-- {{ $post->nama_lengkap}} --}}
-                        </a>
-                    </td>
-                    <td>
-                      <a>
-                        {{-- {{ $post->created_at}} --}}
-                      </a>
-                    </td>
-                    <td class="project-state">
-                        {{-- {{
-                          if($post->status == 0){
-                            echo '<span class="badge badge-danger"></span>';
-                          }else {
-                           echo '<span class="badge badge-success"></span>';
-                          }
-                          }} --}}
-                          {{-- @if($post->status == 'Seleksi')
-                          <span class="badge badge-danger">Tahap Seleksi</span>
-                      @else
-                      <span class="badge badge-success">Lolos</span>
-                      @endif --}}
+                      {{$post->deskripsi}}
                     </td>
                     <td></td>
+                    <td>
+                      {{$post->tanggal_seleksi}}
+                    </td>
+                    <td>
+                      {{$post->lokasi_seleksi}}
+                    </td>
+                    <td>
+                      {{$post->file}}
+                    </td>
+                    {{-- <td>
+                      {{$post->nama_pengumuman}}
+                    </td> --}}
                     <td class="project-actions text-right">
                         <a class="btn btn-primary btn-sm" href="#">
                             <i class="fas fa-folder">
@@ -124,7 +95,7 @@
                         </a>
                     </td>
                   </tr>
-                  {{-- @endforeach --}}
+                  @endforeach
             </tbody>
         </table>
       </div>

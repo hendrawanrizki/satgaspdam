@@ -34,6 +34,7 @@
                       <th class="text-center">Nama Lowongan</th>
                       <th class="text-center">Tanggal Seleksi</th>
                       <th class="text-center">Lokasi Seleksi</th>
+                      <th class="text-center">Nama Peserta</th>
                       <th class="text-center">Aksi</th>
 
                    </tr>
@@ -49,6 +50,7 @@
                       <td>{{$post->judul_lowongan}}</td>
                       <td>{{$post->tanggal_seleksi}}</td>
                       <td>{{$post->lokasi_seleksi}}</td>
+                      <td>{{$post->nama_lengkap}}</td>
                       <td>
                         <button class="btn btn-primary">Detail</button>
                       </td>

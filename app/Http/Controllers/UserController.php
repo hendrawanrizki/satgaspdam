@@ -178,11 +178,11 @@ class UserController extends Controller
     //      return view('seleksi',  ['data' => $data]);
     // }
     public function lihatjadwal(){
-        $data = DB::table('pilihlowongan')
-        ->leftJoin('jadwalseleksi', 'pilihlowongan.id', '=', 'jadwalseleksi.pilihlowongan_id')
+        $data = DB::table('jadwalseleksi')
+        ->leftJoin('pilihlowongan', 'pilihlowongan.id', '=', 'jadwalseleksi.pilihlowongan_id')
         ->leftJoin('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
-       // ->leftJoin('pilihlowongan', 'pilihlowongan.lowongan_id', '=', 'lowongan.id')
-        ->select('jadwalseleksi.id','jadwalseleksi.nama_pengumuman','jadwalseleksi.deskripsi','jadwalseleksi.tanggal_seleksi','jadwalseleksi.lokasi_seleksi','lowongan.judul_lowongan')
+       ->leftJoin('datauser', 'pilihlowongan.datauser_id', '=', 'datauser.id')
+        ->select('jadwalseleksi.id','jadwalseleksi.nama_pengumuman','jadwalseleksi.deskripsi','jadwalseleksi.tanggal_seleksi','jadwalseleksi.lokasi_seleksi','lowongan.judul_lowongan','datauser.nama_lengkap')
         ->where('pilihlowongan.status', '=', 'Seleksi')
         ->get();    
         // return response()->json(['message'=>'Lihat data kategori Lowongan','data' => $data], 200);  
