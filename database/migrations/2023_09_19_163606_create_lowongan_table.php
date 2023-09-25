@@ -20,6 +20,13 @@ class CreateLowonganTable extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->string('penempatan');
+            $table->string('posisi_jabatan');
+            $table->string('jenis_kelamin');
+            $table->string('pendidikan');
+            $table->string('jurusan');
+            $table->string('syarat_dokumen')->nullable();
+            $table->string('keterangan')->nullable();
+            $table->string('file')->nullable();
             $table->unsignedBigInteger('kategori_lowongan');
             $table->timestamps();
            

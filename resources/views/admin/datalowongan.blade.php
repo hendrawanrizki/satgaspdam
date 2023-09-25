@@ -1,8 +1,6 @@
+@auth
 @include('admin.partials.header')
 
-<body>
-<!-- Site wrapper -->
-<div class="wrapper">
 @include('admin.partials.navbar')
 
 @include('admin.partials.sidebar')
@@ -34,14 +32,15 @@
         <div class="card-header">
           <h3 class="card-title">Data Lowongan Pekerjaan</h3>
 
-          {{-- <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+          <div class="card-tools">
+            <a href="/tambahlowongan" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Tambah Data Lowongan</a>
+            {{-- <button type="button" class="btn btn-primary" data-card-widget="collapse" title="Collapse">
+              Tambah Data
+            </button> --}}
+            {{-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
               <i class="fas fa-times"></i>
-            </button>
-          </div> --}}
+            </button> --}}
+          </div>
         </div>
         <div class="card-body p-0">
           <table class="table table-striped projects">
@@ -134,3 +133,4 @@
   <!-- /.content-wrapper -->
 
 @include('admin.partials.footer')
+@endauth

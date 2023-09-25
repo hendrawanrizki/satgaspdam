@@ -21,14 +21,20 @@ Route::post('/login', [AdminController::class, 'login'])->name('login');
 Route::get('/login', [AdminController::class, 'lihatlogin']);
 Route::get('/register', [AdminController::class, 'lihatregister']);
 Route::post('/register', [AdminController::class, 'register']);
-Route::get('/admin', function () {
-    return view('admin.home');
+Route::get('/jadwal', [UserController::class, 'lihatjadwal']);  
+Route::get('/hasil', [UserController::class, 'lihatseleksi']);
+Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.home');
+    });
+    Route::get('/admin/pelamar', [AdminController::class, 'lihatuserlowongan']);
+    Route::get('/admin/pengumuman', [AdminController::class, 'lihatpengumuman']);
+    Route::get('/admin/lowongan', [AdminController::class, 'lihatlowongan']);
+    Route::get('/detailuser/{id}',[AdminController::class, 'detailuserlowongan']);
+    Route::get('/tambahlowongan',[AdminController::class, 'tambahlowongan']);
+    Route::post('/uploadlowongan',[AdminController::class, 'uploadlowongan'])->name('tambahlowongan');
 });
-
-Route::get('/admin/pelamar', [AdminController::class, 'lihatuserlowongan']);
-
-Route::get('/admin/lowongan', [AdminController::class, 'lihatlowongan']);
-
 // Route::get('/login', function () {
 //     return view('login');
 // });

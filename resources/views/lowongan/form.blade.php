@@ -1,11 +1,32 @@
 @include('partials.header')
-
-<section class="vh-200" style="background-color: #2779e2;">
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('');">
+      <div class="container position-relative">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2>Form Data Diri</h2>
+            <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <div class="container">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li>Form Data Diri</li>
+        </ol>
+      </div>
+    </nav>
+  </div><!-- End Breadcrumbs -->
+<section class="vh-200" style="background-color: #edebeb;">
+  
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-9">
 
-        <h1 class="text-white mb-4">Form Data Diri</h1>
+        {{-- <h1 class="text-white mb-4">Form Data Diri</h1> --}}
 
         <form  method="POST" action="{{ route('tambahdata', ['id' => $id]) }}" enctype="multipart/form-data">
           @csrf
@@ -77,11 +98,31 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" name="jenis_kelamin" class="form-control form-control-lg" />
-
+                {{-- <input type="text" name="jenis_kelamin" class="form-control form-control-lg" /> --}}
+                <select class="form-select" name="jenis_kelamin" aria-label="Default select example">
+                  <option selected>Pilih Jenis Kelamin</option>
+                  <option value="Laki-Laki">Laki-Laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
               </div>
             </div>
+            <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
 
+                <h6 class="mb-0">Agama</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{-- <input type="text" name="jenis_kelamin" class="form-control form-control-lg" /> --}}
+                <select class="form-select" name="agama" aria-label="Default select example">
+                  <option selected>Pilih Agama</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen">Kristen</option>
+                </select>
+              </div>
+            </div>
             <hr class="mx-n3">
             <div class="row align-items-center py-3">
               <div class="col-md-3 ps-5">
@@ -91,8 +132,12 @@
               </div>
               <div class="col-md-9 pe-5">
 
-                <input type="text" name="status_pernikahan" class="form-control form-control-lg" placeholder="" />
-
+                {{-- <input type="text" name="status_pernikahan" class="form-control form-control-lg" placeholder="" /> --}}
+                <select class="form-select" name="status_pernikahan" aria-label="Default select example">
+                  <option selected>Pilih Status Pernikahan</option>
+                  <option value="Lajang">Lajang</option>
+                  <option value="Nikah">Nikah</option>
+                </select>
               </div>
             </div>
 
@@ -128,6 +173,19 @@
             <div class="row align-items-center pt-4 pb-3">
               <div class="col-md-3 ps-5">
 
+                <h6 class="mb-0">Email</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" name="email" class="form-control form-control-lg" />
+
+              </div>
+            </div>
+            <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
                 <h6 class="mb-0">Pendidikan Terakhir</h6>
 
               </div>
@@ -137,7 +195,32 @@
 
               </div>
             </div>
+            <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
 
+                <h6 class="mb-0">Sekolah</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" name="sekolah" class="form-control form-control-lg" />
+
+              </div>
+            </div>
+            <hr class="mx-n3">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Jurusan</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" name="jurusan" class="form-control form-control-lg" />
+
+              </div>
+            </div>
             <hr class="mx-n3">
             <div class="row align-items-center py-3">
               <div class="col-md-3 ps-5">

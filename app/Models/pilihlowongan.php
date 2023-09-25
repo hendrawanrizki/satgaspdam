@@ -10,5 +10,12 @@ class pilihlowongan extends Model
     use HasFactory;
     protected $table = 'pilihlowongan';
     protected $fillable = ['status','datauser_id','lowongan_id'];
-
+    public function jadwalseleksi()
+    {
+        return $this->belongsToMany(jadwalseleksi::class);
+    } 
+    public function hasilseleksi()
+    {
+        return $this->belongsToMany(hasilseleksi::class);
+    } 
 }

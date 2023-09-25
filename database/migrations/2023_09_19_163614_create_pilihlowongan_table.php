@@ -15,7 +15,7 @@ class CreatePilihlowonganTable extends Migration
     {
         Schema::create('pilihlowongan', function (Blueprint $table) {
             $table->id();
-            $table->boolean('status');
+            $table->string('status');
             $table->unsignedBigInteger('datauser_id');
              $table->unsignedBigInteger('lowongan_id');
             $table->timestamps();

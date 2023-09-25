@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function tambahlowongan(){
+        $data = DB::table('kategorilowongan')->get();
+        return view('admin/tambahlowongan', ['data'=> $data]);
+    }
     public function uploadlowongan(Request $request){
          // Validasi data yang diterima dari formulir
          $request->validate([
@@ -21,6 +25,13 @@ class AdminController extends Controller
             'tanggal_akhir' => 'required|date',
             'penempatan' => 'required|string',
             'kategori_lowongan' => 'required',
+            'posisi_jabatan' => 'required|string',
+            'jenis_kelamin' => 'required|string',
+            'pendidikan' => 'required|string',
+            'jurusan' => 'required|string',
+            'syarat_dokumen' => 'required|string',
+            'keterangan' => 'required|string',
+           
         ]);
 
         // Simpan data ke dalam database
@@ -31,10 +42,16 @@ class AdminController extends Controller
             'tanggal_akhir' => $request->input('tanggal_akhir'),
             'penempatan' => $request->input('penempatan'),
             'kategori_lowongan' => $request->input('kategori_lowongan'),
+            'posisi_jabatan' => $request->input('posisi_jabatan'),
+            'jenis_kelamin' => $request->input('jenis_kelamin'),
+            'pendidikan' => $request->input('pendidikan'),
+            'jurusan' => $request->input('jurusan'),
+            'syarat_dokumen' => $request->input('syarat_dokumen'),
+            'keterangan' => $request->input('keterangan'),
         ]);
         $lowongan->save();
-        //return redirect('/lowongan')->with('success', 'Lowongan berhasil ditambahkan');
-        return response()->json(['message'=>'data berhasil disimpan','data' => $lowongan], 200);
+        return redirect('admin/datalowongan')->with('success', 'Lowongan berhasil ditambahkan');
+       // return response()->json(['message'=>'data berhasil disimpan','data' => $lowongan], 200);
     }
     public function lihatlowongan(Request $request) {
         $data = DB::table('lowongan')
@@ -96,7 +113,8 @@ class AdminController extends Controller
         ->select('datauser.nama_lengkap','datauser.no_ktp','datauser.tempat_lahir','datauser.tanggal_lahir','datauser.jenis_kelamin','datauser.status_pernikahan','datauser.alamat','datauser.telpon','datauser.pendidikan_terakhir')
         ->where('pilihlowongan.id', '=', $id)
         ->get();
-        return response()->json(['message'=>'berhasil menampilkan data','data' => $data], 200);
+        return view('admin/datacvpelamar', ['data' => $data]);
+        // return response()->json(['message'=>'berhasil menampilkan data','data' => $data], 200);
     }
     public function editstatus($id){
         $data = pilihlowongan::find($id);
@@ -142,6 +160,10 @@ class AdminController extends Controller
         return redirect('/login');
         // return response()->json(['message'=>'Gagal Login'], 400);
     }
+    public function logout(){
+        Auth::logout();
+    return redirect('/login');
+    }
     public function lihatregister()
 {
     return view('register');
@@ -168,5 +190,15 @@ class AdminController extends Controller
     // Redirect ke halaman setelah registrasi berhasil
     // return redirect(RouteServiceProvider::HOME);
     return response()->json(['message'=>'Berhasil Registrasi','data' => $user], 200);
+}
+public function lihatpengumuman() {
+    $data = DB::table('pilihlowongan')
+    ->leftJoin('jadwalseleksi', 'pilihlowongan.id', '=', 'jadwalseleksi.pilihlowongan_id')
+    ->leftJoin('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
+   // ->leftJoin('pilihlowongan', 'pilihlowongan.lowongan_id', '=', 'lowongan.id')
+    ->select('jadwalseleksi.id','jadwalseleksi.nama_pengumuman','jadwalseleksi.deskripsi','jadwalseleksi.tanggal_seleksi','jadwalseleksi.lokasi_seleksi','lowongan.judul_lowongan')
+    ->where('pilihlowongan.status', '=', 'Seleksi')
+    ->get();  
+    return view('admin/pengumuman', ['data' => $data]);
 }
 }

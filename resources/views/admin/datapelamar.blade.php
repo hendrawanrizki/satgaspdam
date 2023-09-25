@@ -1,8 +1,7 @@
+@auth
+    {{-- Konten yang hanya dapat diakses setelah login --}}
 @include('admin.partials.header')
 
-<body>
-<!-- Site wrapper -->
-<div class="wrapper">
 @include('admin.partials.navbar')
 
 @include('admin.partials.sidebar')
@@ -51,7 +50,7 @@
                           No.
                       </th>
                       <th style="width: 20%">
-                          Posisi
+                          Nama Lowongan
                       </th>
                       <th style="width: 30%">
                           Nama Peserta
@@ -68,8 +67,9 @@
                   </tr>
               </thead>
               <tbody>
+                @foreach ($data as $post) 
                   <tr>
-                    @foreach ($data as $post) 
+                   
                       <td>
                         {{ $post->id}}
                       </td>
@@ -97,14 +97,14 @@
                              echo '<span class="badge badge-success"></span>';
                             }
                             }} --}}
-                            @if($post->status == 0)
-                            <span class="badge badge-danger">Belum Selesai</span>
+                            @if($post->status == 'Seleksi')
+                            <span class="badge badge-danger">Tahap Seleksi</span>
                         @else
-                        <span class="badge badge-success">Selesai</span>
+                        <span class="badge badge-success">Lolos</span>
                         @endif
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                          <a class="btn btn-primary btn-sm" href="/detailuser/{{$post->id}}">
                               <i class="fas fa-folder">
                               </i>
                               View
@@ -120,8 +120,8 @@
                               Delete
                           </a>
                       </td>
-                      @endforeach
                     </tr>
+                    @endforeach
               </tbody>
           </table>
         </div>
@@ -135,3 +135,4 @@
   <!-- /.content-wrapper -->
 
 @include('admin.partials.footer')
+@endauth

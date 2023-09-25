@@ -17,6 +17,10 @@ class CreateDatauserTable extends Migration
             $table->id();
             $table->string('nama_lengkap');
             $table->string('no_ktp');
+            $table->string('email');
+            $table->string('agama');
+            $table->string('jurusan');
+            $table->string('sekolah');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');

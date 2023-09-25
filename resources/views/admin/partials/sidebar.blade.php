@@ -102,6 +102,40 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Pengumuman
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/pengumuman" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Pengumuman</p>
+                </a>
+              </li>
+            </ul>
+            
+          </li>
+          <li class="nav-item menu-open">
+         <form action="{{route('logout')}}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link active">Logout</button>
+        </form> 
+            {{-- <a href="{{ route('logout') }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Logout
+              </p>
+            </a> --}}
+           
+          
+          
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

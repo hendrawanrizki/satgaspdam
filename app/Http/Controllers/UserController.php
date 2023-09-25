@@ -5,6 +5,8 @@ use Carbon\Carbon;
 use App\Models\Datauser;
 use App\Models\Pilihlowongan;
 use App\Models\Filedokumen;
+use App\Models\Jadwalseleksi;
+use App\Models\Hasilseleksi;
 use App\Models\Lowongan;
 use App\Models\kategorilowongan;
 use App\Http\Controllers\Controller;
@@ -28,6 +30,10 @@ class UserController extends Controller
             'alamat' => 'required|string',
             'telpon' => 'required|string|max:13',
             'pendidikan_terakhir' => 'required|string',
+            'agama' => 'required|string',
+            'jurusan' => 'required|string',
+            'sekolah' => 'required|string',
+            'email' => 'required|string',
             'cv' => 'required|file|mimes:jpeg,png,pdf',
             'kk' => 'required|file|mimes:jpeg,png',
             'npwp' => 'required|file|mimes:jpeg,png',
@@ -55,7 +61,10 @@ class UserController extends Controller
         $alamat = $request->input('alamat');
         $notelpon = $request->input('telpon');
         $pendidikanterakhir = $request->input('pendidikan_terakhir');
-        
+        $agama = $request->input('agama');
+        $jurusan = $request->input('jurusan');
+        $sekolah = $request->input('sekolah');
+        $email = $request->input('email');
         // Misalnya, menyimpan data ke dalam tabel
       $data =  Datauser::create([
             'nama_lengkap' => $nama,
@@ -67,6 +76,10 @@ class UserController extends Controller
             'alamat' => $alamat,
             'telpon' => $notelpon,
             'pendidikan_terakhir' => $pendidikanterakhir,
+            'agama' => $agama,
+            'jurusan' => $jurusan,
+            'sekolah' => $sekolah,
+            'email' => $email,
             // 'path' => $fileName,
         ]);
        
@@ -118,12 +131,12 @@ class UserController extends Controller
     ]);
     // $id_lowongan = Lowongan::find($id);
     Pilihlowongan::create([
-        'status' => 0,
+        'status' => 'Seleksi',
         'datauser_id' => $data->id,
         'lowongan_id' => $id,
     ]);
         //return view('index')->with('success', 'Data berhasil diunggah.');
-       return redirect('/')->with('success', 'Data berhasil diunggah.');
+      return redirect('/')->with('success', 'Data berhasil diunggah.');
         //return response()->json(['message'=>'Berhasil di simpan data Lowongan'], 200);  
     }
     // public  function pilihlowonganbyid(Request $request, $id){
@@ -158,5 +171,21 @@ class UserController extends Controller
         $datas = Lowongan::all();
        // return response()->json(['message'=>'Lihat data kategori Lowongan','data' => $data], 200);  
         return view('index',  ['data' => $data, 'datas' => $datas]);
+    }
+    // public function lihatseleksi(){
+    //     $data = Hasilseleksi::all();
+    //     // return response()->json(['message'=>'Lihat data kategori Lowongan','data' => $data], 200);  
+    //      return view('seleksi',  ['data' => $data]);
+    // }
+    public function lihatjadwal(){
+        $data = DB::table('pilihlowongan')
+        ->leftJoin('jadwalseleksi', 'pilihlowongan.id', '=', 'jadwalseleksi.pilihlowongan_id')
+        ->leftJoin('lowongan', 'pilihlowongan.id', '=', 'lowongan.id')
+       // ->leftJoin('pilihlowongan', 'pilihlowongan.lowongan_id', '=', 'lowongan.id')
+        ->select('jadwalseleksi.id','jadwalseleksi.nama_pengumuman','jadwalseleksi.deskripsi','jadwalseleksi.tanggal_seleksi','jadwalseleksi.lokasi_seleksi','lowongan.judul_lowongan')
+        ->where('pilihlowongan.status', '=', 'Seleksi')
+        ->get();    
+        // return response()->json(['message'=>'Lihat data kategori Lowongan','data' => $data], 200);  
+         return view('jadwal',  ['data' => $data]);
     }
 }

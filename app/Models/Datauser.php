@@ -9,7 +9,7 @@ class Datauser extends Model
 {
     use HasFactory;
     protected $table = 'datauser';
-    protected $fillable = ['nama_lengkap', 'no_ktp', 'tempat_lahir','tanggal_lahir','jenis_kelamin','status_pernikahan','alamat','telpon','pendidikan_terakhir'];
+    protected $fillable = ['nama_lengkap', 'no_ktp', 'tempat_lahir','tanggal_lahir','jenis_kelamin','status_pernikahan','alamat','telpon','pendidikan_terakhir','agama','sekolah','jurusan','email'];
     public function Lowongan()
     {
         return $this->belongsToMany(Lowongan::class);
