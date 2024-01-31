@@ -196,10 +196,10 @@ class AdminController extends Controller
     ]);
 
     // Otentikasi pengguna setelah registrasi
-    // auth()->login($user);
+    auth()->login($user);
 
     // Redirect ke halaman setelah registrasi berhasil
-    // return redirect(RouteServiceProvider::HOME);
+    return redirect('/login');
     return response()->json(['message'=>'Berhasil Registrasi','data' => $user], 200);
 }
 public function tambahpengumuman(){
